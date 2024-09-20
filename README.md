@@ -44,7 +44,7 @@ Here’s an overview of the steps to calculate VaR in Snowpark:
 
 2. **Fetch Historical Stock Data**:
    - Pull historical stock data into Snowflake using **Snowflake tables** or external sources like **Yahoo Finance** using `yfinance` into a pandas dataframe.
-   - Convert pandas dataframe into Snowpark dataframe to persist in a Snowflake table for future use.
+   - Convert the pandas dataframe into Snowpark dataframe to persist in a Snowflake table for future use.
 
 3. **Calculate Daily Returns**:
    - Compute the daily returns based on historical stock prices.
