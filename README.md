@@ -135,4 +135,40 @@ print(f"Value at Risk (VaR) at 95% confidence level: {var}")
 # Step 8: Close Snowpark session
 session.close()
 
+### Results
+The VaR score interpretation:
 
+For example, if your VaR scroe is -0.02978
+
+The Value at Risk (VaR) score of -0.02978 means there's a 2.98% potential loss on your portfolio (or stock, e.g., AAPL) over the next day, with a 95% confidence level.
+
+Here's a breakdown of what this means and how to interpret whether it's a "good" VaR score:
+
+What This VaR Means:
+Interpretation: There’s a 95% probability that the portfolio’s daily loss will not exceed 2.98% of its value. Conversely, there's a 5% chance that the loss will exceed 2.98% in one trading day.
+
+For example, if you hold 
+2,928** or less.
+
+Is This a "Good" VaR Score?
+Whether this is a good VaR depends on several factors:
+
+Risk Tolerance:
+
+If you're a conservative investor with a low risk tolerance, a 2.98% daily loss might seem high, indicating that AAPL carries a reasonable degree of daily risk.
+For aggressive investors, especially those in high-volatility markets (e.g., tech stocks), this level of risk might be acceptable.
+Market Conditions:
+
+Historical context is key. During periods of high market volatility (e.g., market crashes, economic downturns), higher VaR scores are expected. Conversely, in stable markets, you'd expect lower VaR scores.
+Compare your VaR with the current market volatility (e.g., using the VIX index). If the overall market is volatile, your VaR is likely higher than usual.
+Comparing with Other Assets:
+
+It’s important to benchmark the VaR against other assets in your portfolio or similar stocks. AAPL tends to be a more stable, large-cap stock. If you're holding stocks in riskier sectors (e.g., biotech, cryptocurrencies), their VaR could be much higher.
+Compare this VaR to other stocks you own or to an index like the S&P 500. If AAPL has a lower VaR than your other holdings, it might be a "safer" part of your portfolio.
+
+Investment Horizon:
+
+The VaR you calculated is for a 1-day time horizon. If your investment horizon is longer (e.g., 1 month, 1 year), consider calculating VaR over those periods. A 1-day VaR is primarily useful for traders or those managing daily risk exposure.
+Portfolio Size and Diversification:
+
+If AAPL is a part of a diversified portfolio, the portfolio VaR may be lower than the VaR for individual assets. Diversification generally reduces risk because losses in one stock may be offset by gains in another.
