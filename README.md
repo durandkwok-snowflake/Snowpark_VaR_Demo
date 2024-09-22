@@ -135,6 +135,8 @@ print(f"Value at Risk (VaR) at 95% confidence level: {var}")
 # Step 8: Close Snowpark session
 session.close()
 
+```
+
 ### Results
 The VaR score interpretation:
 
