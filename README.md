@@ -69,3 +69,79 @@ Snowpark offers a seamless way to calculate VaR directly within Snowflake, lever
 ### Code
 ```python
 !pip install yfinance
+# Import python packages
+import streamlit as st
+import pandas as pd
+
+# We can also use Snowpark for our analyses!
+from snowflake.snowpark.context import get_active_session
+from snowflake.snowpark.functions import col, call_builtin
+
+session = get_active_session()
+
+import numpy as np
+import yfinance as yf
+
+def get_stock_data(symbol, start, end):
+    stock_data = yf.download(symbol, start=start, end=end)
+    stock_data['Daily Return'] = stock_data['Adj Close'].pct_change()
+    stock_data = stock_data.dropna()  # Drop missing values
+    return stock_data
+
+# Fetch AAPL stock data
+symbol = 'AAPL'
+start_date = '2022-01-01'
+end_date = '2023-12-31'
+stock_data = get_stock_data(symbol, start=start_date, end=end_date)
+
+snowpark_df = session.create_dataframe(stock_data)
+
+snowpark_df.show(5)
+
+# Step 3: Save the Snowpark DataFrame as a new table in Snowflake
+table_name = "stock_data_table"  # Define your table name
+
+# Save the Snowpark DataFrame as a table in the Snowflake database
+snowpark_df.write.save_as_table(table_name, mode="overwrite")  # Use "append" if you want to add to an existing table
+
+
+# Step 4: Calculate mean and volatility of daily returns
+mean_return = stock_data['Daily Return'].mean()
+volatility = stock_data['Daily Return'].std()
+
+print(f"Mean Return: {mean_return}")
+print(f"Volatility: {volatility}")
+
+# Step 5: Monte Carlo Simulation of stock returns
+num_simulations = 10000
+time_horizon = 1  # 1 day
+
+
+def simulate_stock_returns(num_simulations, mean_return, volatility):
+    # Simulate stock returns based on historical mean and volatility
+    simulated_returns = np.random.normal(loc=mean_return, scale=volatility, size=num_simulations)
+    return pd.DataFrame(simulated_returns, columns=["return_value"])
+
+# Generate simulated stock returns
+simulated_returns_df = simulate_stock_returns(num_simulations, mean_return, volatility)
+
+# Step 6: Load simulated returns to Snowflake as a temporary Snowpark DataFrame
+simulated_returns_snowpark_df = session.create_dataframe(simulated_returns_df)
+
+simulated_returns_snowpark_df.show(5)
+
+
+# Step 7: Calculate Value at Risk (VaR) - at 95% confidence level using Snowpark's approx_percentile
+confidence_level = 0.05
+var_result = simulated_returns_snowpark_df.select(call_builtin('approx_percentile', col('"return_value"'), confidence_level).alias('VaR')).collect()
+
+print(var_result)
+
+var = var_result[0]['VAR']
+
+print(f"Value at Risk (VaR) at 95% confidence level: {var}")
+
+# Step 8: Close Snowpark session
+session.close()
+
+
