@@ -149,9 +149,6 @@ Here's a breakdown of what this means and how to interpret whether it's a "good"
 What This VaR Means:
 Interpretation: There’s a 95% probability that the portfolio’s daily loss will not exceed 2.98% of its value. Conversely, there's a 5% chance that the loss will exceed 2.98% in one trading day.
 
-For example, if you hold 
-2,928** or less.
-
 Is This a "Good" VaR Score?
 Whether this is a good VaR depends on several factors:
 
