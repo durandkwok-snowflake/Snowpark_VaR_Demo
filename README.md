@@ -65,3 +65,7 @@ Here’s an overview of the steps to calculate VaR in Snowpark:
 
 ### Conclusion:
 Snowpark offers a seamless way to calculate VaR directly within Snowflake, leveraging Python and Snowflake’s scalable infrastructure. Whether you’re working with historical data or running Monte Carlo simulations, Snowpark can help you efficiently compute risk metrics like VaR without leaving the Snowflake environment.
+
+### Code
+```python
+!pip install yfinance
