@@ -72,6 +72,8 @@ Snowpark offers a seamless way to calculate VaR directly within Snowflake, lever
 # Import python packages
 import streamlit as st
 import pandas as pd
+import numpy as np
+import yfinance as yf
 
 # We can also use Snowpark for our analyses!
 from snowflake.snowpark.context import get_active_session
@@ -79,8 +81,6 @@ from snowflake.snowpark.functions import col, call_builtin
 
 session = get_active_session()
 
-import numpy as np
-import yfinance as yf
 
 def get_stock_data(symbol, start, end):
     stock_data = yf.download(symbol, start=start, end=end)
