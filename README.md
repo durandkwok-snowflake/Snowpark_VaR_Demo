@@ -13,15 +13,6 @@ In this introduction, we'll cover:
 ### 1. What is Value at Risk (VaR)?
 **Value at Risk (VaR)** is a statistical measure used to estimate the **maximum potential loss** of a portfolio over a defined period for a given confidence interval. It's a widely used risk metric in finance. For example, a 95% 1-day VaR of $1 million means that there’s a 95% chance that the portfolio will not lose more than $1 million in a day.
 
-- **VaR Formula (Normal Distribution)**:
-  \[
-  VaR = Z \times \sigma \times \sqrt{T}
-  \]
-  Where:
-  - \( Z \) is the Z-score corresponding to the confidence level (e.g., -1.645 for 95% confidence)
-  - \( \sigma \) is the standard deviation (volatility) of returns
-  - \( T \) is the time horizon (e.g., 1 day, 10 days)
-
 There are various methods to calculate VaR:
 - **Historical VaR**: Uses historical data to estimate potential losses.
 - **Parametric VaR**: Assumes the returns follow a normal distribution.
