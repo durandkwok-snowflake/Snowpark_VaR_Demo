@@ -89,7 +89,7 @@ snowpark_df = session.create_dataframe(stock_data)
 
 snowpark_df.show(5)
 
-# Step 3: Save the Snowpark DataFrame as a new table in Snowflake
+# Step 3: Save the Snowpark DataFrame as a new table in Snowflake for further analysis
 table_name = "stock_data_table"  # Define your table name
 
 # Save the Snowpark DataFrame as a table in the Snowflake database
